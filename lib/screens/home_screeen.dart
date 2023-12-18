@@ -108,10 +108,10 @@ class HomeScreen extends StatelessWidget {
           Sectiontitle(title: 'RECOMMENDED'),
           //...Product card...//
 
-          // Productcard(
-          //   product: Product.products[0],
-          // )
-          ProductCarousal(products: Product.products)
+          ProductCarousal(
+              products: Product.products
+                  .where((product) => product.isRecommended)
+                  .toList())
         ],
       ),
     );

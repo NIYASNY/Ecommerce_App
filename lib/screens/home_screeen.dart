@@ -4,6 +4,7 @@ import 'package:e_commerce_jersey_app/widgets/custom_navbar.dart';
 import 'package:e_commerce_jersey_app/widgets/product_carousal.dart';
 import 'package:e_commerce_jersey_app/widgets/productcard.dart';
 import 'package:e_commerce_jersey_app/widgets/sectiontile.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -26,7 +27,10 @@ class HomeScreen extends StatelessWidget {
       'https://cdn.rointernational.in/wp-content/uploads/2020/11/18083829/HALF-SUBLI-DESIGNS-46-1-scaled.jpg'
     ];
     final List<Widget> imageSliders = imgList
-        .map((item) => Container(
+        .map((item) => InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, '/catalog', arguments: Category);
+              },
               child: Container(
                 margin: EdgeInsets.all(5.0),
                 child: ClipRRect(
@@ -105,12 +109,16 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          Sectiontitle(title: 'RECOMMENDED'),
           //...Product card...//
-
+          Sectiontitle(title: 'RECOMMENDED'),
           ProductCarousal(
               products: Product.products
                   .where((product) => product.isRecommended)
+                  .toList()),
+          Sectiontitle(title: 'Most Popular'),
+          ProductCarousal(
+              products: Product.products
+                  .where((product) => product.isPopular)
                   .toList())
         ],
       ),

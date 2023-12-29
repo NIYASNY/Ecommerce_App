@@ -15,7 +15,7 @@ class ProductCarousal extends StatelessWidget {
       height: 165,
       child: ListView.builder(
           shrinkWrap: true,
-          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
           scrollDirection: Axis.horizontal,
           itemCount: products.length,
           itemBuilder: (context, index) {

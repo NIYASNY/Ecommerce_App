@@ -10,7 +10,10 @@ class HeroCarousalCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, '/catalog', arguments: Category);
+        Navigator.pushNamed(
+          context,
+          '/c',
+        );
       },
       child: Container(
           margin: EdgeInsets.all(5.0),

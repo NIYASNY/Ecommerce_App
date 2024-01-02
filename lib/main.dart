@@ -1,7 +1,8 @@
-import 'package:e_commerce_jersey_app/config/app_router.dart';
+import 'package:e_commerce_jersey_app/screens/cart/cart_screen.dart';
+import 'package:e_commerce_jersey_app/screens/catalog/catalogscreen.dart';
 import 'package:e_commerce_jersey_app/screens/home_screeen.dart';
-import 'package:e_commerce_jersey_app/widgets/custom_navbar.dart';
-import 'package:e_commerce_jersey_app/widgets/splashscreen.dart';
+import 'package:e_commerce_jersey_app/screens/product/product_screen.dart';
+import 'package:e_commerce_jersey_app/screens/wishlist/wishlist_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -22,8 +23,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      onGenerateRoute: AppRouter.onGenerateRoute,
-      initialRoute: HomeScreen.routeName,
+      initialRoute: '/',
+      routes: {
+        '/c' : (context) => const CatalogScreen(),
+        '/product': (context) => const ProductScreen(),
+        '/cart': (context) => const CartScreen(),
+        '/wishlist': (context) => const WishlistScreen(),
+      },
       home: HomeScreen(),
     );
   }

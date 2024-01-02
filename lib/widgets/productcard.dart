@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 class Productcard extends StatelessWidget {
   final Product product;
+  final double widthadjest;
   const Productcard({
+    this.widthadjest = 2.5,
     required this.product,
     super.key,
   });
@@ -13,7 +15,7 @@ class Productcard extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          width: MediaQuery.of(context).size.width / 2.5,
+          width: MediaQuery.of(context).size.width / widthadjest,
           height: 150,
           child: Image.network(
             product.imageUrl,

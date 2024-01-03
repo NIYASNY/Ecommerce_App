@@ -4,16 +4,16 @@ import 'package:e_commerce_jersey_app/screens/model/product_model.dart';
 import 'package:e_commerce_jersey_app/widgets/custom_navbar.dart';
 import 'package:e_commerce_jersey_app/widgets/hero_carousal_card.dart';
 import 'package:e_commerce_jersey_app/widgets/product_carousal.dart';
-import 'package:e_commerce_jersey_app/widgets/productcard.dart';
 import 'package:e_commerce_jersey_app/widgets/sectiontile.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String routeName = '/';
+
   static Route route() {
-    return MaterialPageRoute(
-        settings: RouteSettings(name: routeName), builder: (_) => HomeScreen());
+    return MaterialPageRoute(builder: (_) => HomeScreen(),
+    settings: RouteSettings(name: routeName),
+    );
   }
 
   const HomeScreen({super.key});
@@ -55,39 +55,41 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: CustomNavbar(),
-      body: Column(
-        children: [
-          Container(
-            child: CarouselSlider(
-              items: Categery.categories
-                  .map((category) => HeroCarousalCard(category: category))
-                  .toList(),
-              options: CarouselOptions(
-                viewportFraction: 0.9,
-                aspectRatio: 1.5,
-                enlargeCenterPage: true,
-                initialPage: 2,
-                autoPlay: true,
-                enableInfiniteScroll: false,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              child: CarouselSlider(
+                items: Categery.categories
+                    .map((category) => HeroCarousalCard(category: category))
+                    .toList(),
+                options: CarouselOptions(
+                  viewportFraction: 0.9,
+                  aspectRatio: 1.5,
+                  enlargeCenterPage: true,
+                  initialPage: 2,
+                  autoPlay: true,
+                  enableInfiniteScroll: false,
+                ),
               ),
             ),
-          ),
-          //...Product card...//
-          Sectiontitle(title: 'RECOMMENDED'),
-          // Productcard(
-          //   product: Product.products[0],
-          // ),
-
-          ProductCarousal(
-              products: Product.products
-                  .where((product) => product.isRecommended)
-                  .toList()),
-          Sectiontitle(title: 'Most Popular'),
-          ProductCarousal(
-              products: Product.products
-                  .where((product) => product.isPopular)
-                  .toList())
-        ],
+            //...Product card...//
+            Sectiontitle(title: 'RECOMMENDED'),
+            // Productcard(
+            //   product: Product.products[0],
+            // ),
+        
+            ProductCarousal(
+                products: Product.products
+                    .where((product) => product.isRecommended)
+                    .toList()),
+            Sectiontitle(title: 'Most Popular'),
+            ProductCarousal(
+                products: Product.products
+                    .where((product) => product.isPopular)
+                    .toList())
+          ],
+        ),
       ),
     );
   }

@@ -1,19 +1,22 @@
+import 'package:e_commerce_jersey_app/screens/catalog/catalogscreen.dart';
 import 'package:e_commerce_jersey_app/screens/model/category_model.dart';
-import 'package:flutter/foundation.dart';
+import 'package:e_commerce_jersey_app/screens/model/product_model.dart';
 import 'package:flutter/material.dart';
 
 class HeroCarousalCard extends StatelessWidget {
   final Categery category;
-  const HeroCarousalCard({required this.category});
+  // final Product product;
+  const HeroCarousalCard({required this.category,});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         Navigator.pushNamed(
-          context,
-          '/c',
-        );
+            context,
+            CatalogScreen.routeName,
+            arguments: category,
+          );
       },
       child: Container(
           margin: EdgeInsets.all(5.0),
@@ -21,8 +24,10 @@ class HeroCarousalCard extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(5.0)),
               child: Stack(
                 children: <Widget>[
-                  Image.network(category.imageUrl,
-                      fit: BoxFit.cover, width: 1000.0),
+                  Image.network(
+                      category.imageUrl,
+                      fit: BoxFit.cover,
+                      width: 1000.0),
                   Positioned(
                     bottom: 0.0,
                     left: 0.0,

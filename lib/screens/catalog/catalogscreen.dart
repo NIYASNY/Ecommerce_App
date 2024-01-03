@@ -7,18 +7,25 @@ import 'package:flutter/material.dart';
 class CatalogScreen extends StatelessWidget {
   static const String routeName = '/catalog';
 
-  // final Categery categery;
+  static Route route({required Categery categery}) {
+    return MaterialPageRoute(
+      settings: RouteSettings(name: routeName),
+      builder: (_) => CatalogScreen(category: categery,),
+    );
+  }
 
-  const CatalogScreen();
+  final Categery category;
+
+  const CatalogScreen({required this.category});
 
   @override
   Widget build(BuildContext context) {
-    // final List<Product> categoryProduct = Product.products
-    //     .where((product) => product.category == categery.name)
-    //     .toList();
+    final List<Product> categoryProduct = Product.products
+        .where((product) => product.category == category.name)
+        .toList();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Catalog'),
+        title: Text(category.name),
       ),
       bottomNavigationBar: CustomNavbar(),
       body: GridView.builder(
@@ -28,10 +35,10 @@ class CatalogScreen extends StatelessWidget {
           ),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2, childAspectRatio: 1.15),
-          itemCount: 3,
+          itemCount: categoryProduct.length,
           itemBuilder: (BuildContext, int index) {
             return Center(
-              child: Productcard(product: Product.products[0]),
+              child: Productcard(product: categoryProduct[index]),
               widthFactor: 2.2,
             );
           }),
